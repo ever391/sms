@@ -25,7 +25,15 @@ if err != nil {
 ```
 - 名词解释
     - SignName      签名，阿里服务
-    - RegionID      地区，阿里服务 例：cn-hangzhou
+    - RegionID      地区，阿里服务 
+        - 公网
+            - 默认值："" 
+        - VPC 
+            - 华东1："cn-hangzhou"
+            - 华东2："cn-shanghai"
+            - 华北2："cn-beijing"
+            - 华南1: "cn-shenzhen"
+         
     - AccessKeyID   授权KEY ID 阿里服务
     - AccessSecret  授权密钥 阿里服务
     - mobile        发送短信目标手机号
