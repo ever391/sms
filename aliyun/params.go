@@ -7,18 +7,20 @@ import (
 
 func NewParams(mobile, verifyCode, product, templateCode string) *params {
 	return &params{
-		Mobile:       mobile,
-		VerifyCode:   verifyCode,
-		Product:      product,
-		TemplateCode: templateCode,
+		Mobile:         mobile,
+		VerifyCode:     verifyCode,
+		Product:        product,
+		TemplateCode:   templateCode,
+		TemplateParams: map[string]string{"code": verifyCode},
 	}
 }
 
 type params struct {
-	Mobile       string
-	VerifyCode   string
-	Product      string
-	TemplateCode string
+	Mobile         string
+	VerifyCode     string
+	Product        string
+	TemplateCode   string
+	TemplateParams map[string]string
 }
 
 func (p *params) CheckParamsAll() error {

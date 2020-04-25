@@ -66,16 +66,13 @@ func (c *aliyunClient) BuildParams(params *params) (*requests.CommonRequest, err
 	request.QueryParams["SignName"] = c.SignName
 	request.QueryParams["PhoneNumbers"] = params.Mobile
 	request.QueryParams["TemplateCode"] = params.TemplateCode
-	request.QueryParams["TemplateParam"], err = c.BuildTemplateParams(params.VerifyCode, params.Product)
+	request.QueryParams["TemplateParam"], err = c.BuildTemplateParams(params.TemplateParams)
 	return request, err
 }
 
-func (c *aliyunClient) BuildTemplateParams(verifyCode, product string) (string, error) {
+func (c *aliyunClient) BuildTemplateParams(templateParams map[string]string) (string, error) {
 	// 短信内容参数处理
-	p := make(map[string]string)
-	p["code"] = verifyCode
-	p["product"] = product
-	resByte, err := json.Marshal(p)
+	resByte, err := json.Marshal(templateParams)
 	if err != nil {
 		return "", err
 	}

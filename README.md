@@ -31,4 +31,5 @@ if err != nil {
     - mobile        发送短信目标手机号
     - verifyCode    业务生成的手机验证码
     - product       调用发送验证码的业务端的对外产品名称
-    - templateCode  阿里短信服务注册的短信模版
+    - templateCode  阿里短信服务 短信模版 Code
+    - templateParams阿里短信服务 短信模版 相应的参数健值对map[string]string{"code":"321123",...}
