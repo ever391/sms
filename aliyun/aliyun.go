@@ -22,6 +22,7 @@ type aliyunClient struct {
 	RegionID     string
 	AccessKeyID  string
 	AccessSecret string
+	ecsClient    *ecs.Client
 }
 
 func (c *aliyunClient) SendCode(params *params) (*ResponseMessage, error) {
@@ -29,12 +30,14 @@ func (c *aliyunClient) SendCode(params *params) (*ResponseMessage, error) {
 	if err != nil {
 		return nil, err
 	}
-	ecsClient, err := ecs.NewClientWithAccessKey(c.RegionID, c.AccessKeyID, c.AccessSecret)
-	if err != nil {
-		return nil, err
+	if c.ecsClient == nil {
+		c.ecsClient, err = ecs.NewClientWithAccessKey(c.RegionID, c.AccessKeyID, c.AccessSecret)
+		if err != nil {
+			return nil, err
+		}
 	}
 
-	resp, err := ecsClient.ProcessCommonRequest(requestParams)
+	resp, err := c.ecsClient.ProcessCommonRequest(requestParams)
 	if err != nil {
 		// 异常处理
 		return nil, err
