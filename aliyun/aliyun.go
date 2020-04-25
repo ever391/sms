@@ -52,7 +52,7 @@ func (c *aliyunClient) SendCode(params *params) (*ResponseMessage, error) {
 	return respMsg, nil
 }
 
-func (c *aliyunClient) BuildParams(params *Params) (*requests.CommonRequest, error) {
+func (c *aliyunClient) BuildParams(params *params) (*requests.CommonRequest, error) {
 	// 阿里短信服务SDK参数，采用硬编码
 	var err error
 	request := requests.NewCommonRequest()
