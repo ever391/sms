@@ -56,3 +56,15 @@ func (p *params) CheckTemplateCode() bool {
 func (p *params) CheckProduct() bool {
 	return p.Product != ""
 }
+
+func (p *params) SetTemplateParam(key, value string) {
+	p.TemplateParams[key] = value
+}
+
+func (p *params) GetTemplateParam(key string) string {
+	return p.TemplateParams[key]
+}
+
+func (p *params) DeleteTemplateParam(key string) {
+	delete(p.TemplateParams, key)
+}
